@@ -12,6 +12,7 @@
 #include <unistd.h>
 
 #define BUF_SIZE 4096
+#define IP_ADDR "192.168.1.2"
 
 std::mutex lock;
 
@@ -67,7 +68,7 @@ int send_bytes(std::shared_ptr<int> sockfd, std::shared_ptr<int> clientfd) {
 
 int main(void) {
   int sock = socket(AF_INET, SOCK_STREAM, 0);
-  struct sockaddr_in addr = {AF_INET, htons(8080), {inet_addr("127.0.0.1")}};
+  struct sockaddr_in addr = {AF_INET, htons(8080), {inet_addr(IP_ADDR)}};
   int ok = bind(sock, (struct sockaddr *)&addr, sizeof(addr));
   if (ok == -1) {
     std::cerr << "[ERR] bind(): " << strerror(errno) << std::endl;
