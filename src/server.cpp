@@ -6,9 +6,7 @@
 #include <memory>
 #include <mutex>
 #include <netinet/in.h>
-#include <print>
 #include <sys/socket.h>
-#include <thread>
 #include <unistd.h>
 
 #define BUF_SIZE 4096
@@ -33,11 +31,11 @@ int receive_bytes(std::shared_ptr<int> sockfd, std::shared_ptr<int> clientfd) {
     }
 
     if (ok == 0) {
-      std::println("Client disconnecter. Return.");
+      std::cout << "Client disconnecter. Return." << std::endl;
       break;
     }
 
-    std::println("\nclient]: {}", buf);
+    std::cout << "\nclient]: " << buf << std::endl;
   }
   return ok;
 }
@@ -86,7 +84,7 @@ int main(void) {
   char ip_str[INET_ADDRSTRLEN];
   inet_ntop(AF_INET, &addr.sin_addr, ip_str, sizeof(ip_str));
 
-  std::println("Listening at {} on port {}", ip_str, ntohs(addr.sin_port));
+  std::cout << "Listening at " << ip_str << " on port " << ntohs(addr.sin_port);
 
   int client_fd = accept(sock, NULL, NULL);
   if (client_fd == -1) {

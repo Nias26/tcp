@@ -5,10 +5,8 @@
 #include <memory>
 #include <mutex>
 #include <netinet/in.h>
-#include <print>
 #include <string>
 #include <sys/socket.h>
-#include <thread>
 #include <unistd.h>
 
 #define BUF_SIZE 4096
@@ -31,11 +29,11 @@ int receive_bytes(std::shared_ptr<int> sockfd) {
     }
 
     if (ok == 0) {
-      std::println("Server disconnected. Return.");
+      std::cout << "Server disconnected. Return." << std::endl;
       break;
     }
 
-    std::println("\nserver]: {}", buf);
+    std::cout << "\nserver]: " << buf << std::endl;
   }
   return ok;
 }
