@@ -1,3 +1,7 @@
+/*
+ * TODO: Add OpenSSL Security Layer to encrypt connection
+ */
+
 #include <arpa/inet.h>
 #include <cstddef>
 #include <cstring>
